@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Settings, Lightbulb } from "lucide-react";
 import { Flashcard } from "../../lib/schemas";
 
-type Mode = "learn" | "flashCard" | "match" | "normalQuiz";
+type Mode = "learn" | "match" | "normalQuiz";
 
 /**
  * Props for the FlashcardComponent, including questions, a function to clear the PDF, and a mode switcher.
@@ -103,7 +103,7 @@ const FlashcardComponent: React.FC<FlashcardProps> = ({ questions, clearPDF, new
   }, []);
 
   // Array of available modes for the quiz, used in the dropdown menu
-  const btnData: Mode[] = ["learn", "flashCard", "match", "normalQuiz"];
+  const btnData: Mode[] = ["learn", "match", "normalQuiz"];
 
   return (
     <>

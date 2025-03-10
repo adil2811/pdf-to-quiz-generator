@@ -17,7 +17,7 @@ type MatchCardProps = {
   newMode: (mode: Mode) => void; // Accept a mode parameter
 };
 
-type Mode = "learn" | "flashCard" | "match" | "normalQuiz";
+type Mode = "learn" | "flashCard" | "normalQuiz";
 
 
 /**
@@ -125,7 +125,7 @@ const MatchCardComponent: React.FC<MatchCardProps> = ({ questions: fetchedQuesti
     /**
      * Array of button data representing different quiz modes.
      */
-    const btnData :Mode[] = ["learn" , "flashCard" , "match" , "normalQuiz"]
+    const btnData :Mode[] = ["learn" , "flashCard" , "normalQuiz"]
 
 
   return (

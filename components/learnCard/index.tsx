@@ -28,7 +28,7 @@ type LearnProps = {
   title?: string;
   newMode: (mode: Mode) => void; // Accept a mode parameter
 };
-type Mode = "learn" | "flashCard" | "match" | "normalQuiz";
+type Mode =  "flashCard" | "match" | "normalQuiz";
 
 /**
  * MatchCardComponent is a React component for displaying a matching quiz game.
@@ -111,7 +111,7 @@ const LearnCard: React.FC<LearnProps> = ({ questions, clearPDF, title = "Quiz", 
 
   
   // Array of available modes for the quiz, used in the dropdown menu
-  const btnData: Mode[] = ["learn", "flashCard", "match", "normalQuiz"];
+  const btnData: Mode[] = [ "flashCard", "match", "normalQuiz"];
 
   return (
     <>
