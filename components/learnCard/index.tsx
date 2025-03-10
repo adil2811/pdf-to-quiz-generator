@@ -65,6 +65,19 @@ const LearnCard: React.FC<LearnProps> = ({ questions, clearPDF, title = "Quiz", 
   const answerToIndex: Record<Question["answer"], number> = { A: 0, B: 1, C: 2, D: 3 };
   const correctAnswerIndex = answerToIndex[currentQuestion.answer];
 
+    /**
+   * Effect hook to close the dropdown menu when clicking outside of it.
+   */
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
   /**
    * Handles the selection of an answer by the user.
    * Updates the progress if the correct answer is selected on the first attempt.
@@ -91,18 +104,7 @@ const LearnCard: React.FC<LearnProps> = ({ questions, clearPDF, title = "Quiz", 
     }
   };
 
-  /**
-   * Effect hook to close the dropdown menu when clicking outside of it.
-   */
-  useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-          setIsOpen(false);
-        }
-      };
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+
   
   // Array of available modes for the quiz, used in the dropdown menu
   const btnData: Mode[] = ["learn", "flashCard", "match", "normalQuiz"];
@@ -216,7 +218,7 @@ const LearnCard: React.FC<LearnProps> = ({ questions, clearPDF, title = "Quiz", 
 
 
         {/* "Don't Know" Button */}
-        <button className="mt-4 text-gray-400 hover:text-white transition">Don't know?</button>
+        <button className="mt-4 text-gray-400 hover:text-white transition">Don&rsquo;t know?</button>
       </div>
     </div>
     </>
