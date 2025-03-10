@@ -9,6 +9,16 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		transform: {
+			'preserve-3d': 'preserve-3d',
+			'rotate-y-180': 'rotateY(180deg)',
+		  },
+		  perspective: {
+			'1000': '1000px',
+		  },
+		  backfaceVisibility: {
+			hidden: 'hidden',
+		  },
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
