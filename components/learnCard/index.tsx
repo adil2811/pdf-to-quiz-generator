@@ -53,11 +53,19 @@ const LearnCard: React.FC<LearnProps> = ({ questions, clearPDF, title = "Quiz", 
   // Reference to detect clicks outside the dropdown menu to close it
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const totalQuestions = questions.length;
 
-  if (totalQuestions === 0) {
-    return <p className="text-white">No questions available.</p>;
-  }
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -65,18 +73,14 @@ const LearnCard: React.FC<LearnProps> = ({ questions, clearPDF, title = "Quiz", 
   const answerToIndex: Record<Question["answer"], number> = { A: 0, B: 1, C: 2, D: 3 };
   const correctAnswerIndex = answerToIndex[currentQuestion.answer];
 
-    /**
-   * Effect hook to close the dropdown menu when clicking outside of it.
-   */
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-          setIsOpen(false);
-        }
-      };
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+
+  
+  const totalQuestions = questions.length;
+  
+  if (totalQuestions === 0) {
+    return <p className="text-white">No questions available.</p>;
+  }
+  
 
   /**
    * Handles the selection of an answer by the user.
